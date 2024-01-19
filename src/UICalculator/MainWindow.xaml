@@ -4,26 +4,99 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UICalculator"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:viewModel="clr-namespace:UICalculator.ViewModels"
         mc:Ignorable="d"
-        Height="404" 
-        Width="646" 
+        Height="450" 
+        Width="720" 
         WindowStyle="None" 
         AllowsTransparency="True"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen" 
         FontFamily="Bahnschrift SemiBold"
-        Background="DimGray">
-    
+        Background="#FF4A4646">
+
+    <Window.DataContext>
+        <viewModel:ViewModelMainWindow/>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDown">
+            <i:InvokeCommandAction Command="{Binding DragMoveApp}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <Separator Grid.ColumnSpan="5" VerticalAlignment="Bottom" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="15" Text="Значения" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="15" Text="Длины" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="15" Text="Координаты" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="X" FontSize="{Binding FontSizeProp}" Foreground="White" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Y" FontSize="{Binding FontSizeProp}" Foreground="White" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="X(y)" FontSize="{Binding FontSizeProp}" Foreground="White" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="4" Text="Y(x)" FontSize="{Binding FontSizeProp}" Foreground="White" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <TextBox Grid.Row="2" Grid.Column="1" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+        <TextBox Grid.Row="3" Grid.Column="1" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+
+        <TextBox Grid.Row="2" Grid.Column="2" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+        <TextBox Grid.Row="3" Grid.Column="2" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+
+        <TextBox Grid.Row="2" Grid.Column="3" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}"/>
+        <TextBox Grid.Row="3" Grid.Column="3" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}"/>
+
+        <TextBox Grid.Row="2" Grid.Column="4" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}"/>
+        <TextBox Grid.Row="3" Grid.Column="4" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="15" Text="Разрешение экрана" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="1" Margin="15" Text="Исходное" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Margin="15" Text="Новое" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Grid.Column="3" Margin="15" Text="Изменение" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="15" Text="Ширина" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <ComboBox Grid.Row="5" Grid.Column="1" Text="0" FontSize="{Binding FontSizeProp}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <ComboBox Grid.Row="5" Grid.Column="2" Text="0"  FontSize="{Binding FontSizeProp}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+        <TextBox Grid.Row="5" Grid.Column="3" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+        <TextBox Grid.Row="6" Grid.Column="3" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Margin="15" Text="Высота" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <ComboBox Grid.Row="6" Grid.Column="1" Text="0" FontSize="{Binding FontSizeProp}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <ComboBox Grid.Row="6" Grid.Column="2" Text="0"  FontSize="{Binding FontSizeProp}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+        <TextBlock Grid.Row="7" Grid.Column="0" Margin="15" Text="Соотношение сторон" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <TextBox Grid.Row="7" Grid.Column="1" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+        <TextBox Grid.Row="7" Grid.Column="2" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+
+        <TextBlock Grid.Row="8" Grid.Column="0" Margin="15" Text="Исходное значение" FontSize="{Binding FontSizeProp}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="8" Grid.Column="1" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding FontSizeProp}" />
+
+        <Button Grid.Row="8" Grid.Column="2" Content="Рассчитать значение" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{Binding FontSizeButtonsProp}"/>
     </Grid>
 </Window>
